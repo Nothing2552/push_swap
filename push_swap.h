@@ -7,6 +7,7 @@
 typedef struct s_node
 {
     int				value;
+    int             index;
     struct s_node	*next;
 }	t_node;
 
@@ -34,5 +35,7 @@ void	sort_simple(t_node **a, t_node **b);
 void	sort_medium(t_node **a, t_node **b);
 void	sort_complex(t_node **a, t_node **b);
 void	sort_adaptive(t_node **a, t_node **b);
+
+int		is_empty(t_node **a);
 
 #endif

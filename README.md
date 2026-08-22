@@ -197,3 +197,8 @@ algorithms/
 utils/
 → bunlara yardımcı olur
 --------------------------------------------------------------------
+
+
+sa, sb, ss, pa ve pb fonksiyonları yazıldı. 
+
+stack_utils.c ye bazı yardımcı fonksiyonlar eklendi.
