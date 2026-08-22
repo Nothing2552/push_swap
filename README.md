@@ -35,4 +35,45 @@ push_swap/
 └── libft/
 
 
+                ./push_swap 8 3 5 1
+                         │
+                         ▼
+                 Argümanları kontrol et
+                         │
+              ┌──────────┴──────────┐
+              │                     │
+           geçerli                hatalı
+              │                     │
+              ▼                     ▼
+         Stack A oluştur          Error
+              │
+              ▼
+       Disorder hesapla
+              │
+              ▼
+      Hangi algoritmayı
+       kullanacağına karar ver
+              │
+              ▼
+          A ve B üzerinde
+       operasyonları uygula
+              │
+              ▼
+       pb / ra / sa / pa ...
+              │
+              ▼
+          A sıralandı
+              │
+              ▼
+          memory free
 
+
+
+		      disorder
+                 │
+        ┌────────┼────────┐
+        │        │        │
+      < 0.2    < 0.5    >= 0.5
+        │        │        │
+        ▼        ▼        ▼
+     SIMPLE    MEDIUM   COMPLEX    //adaptive de duruma göre		  hangisinin kullanılacağına karar verir 
