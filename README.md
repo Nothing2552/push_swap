@@ -178,3 +178,22 @@ Terminal:
 
               B = NULL
 --------------------------------------------------------------------
+parsing/
+→ terminalden gelen veriyi kontrol edip hazırlar
+
+t_stack
+→ Stack A ve B'nin elemanlarının yapısı
+
+linked list
+→ Stack A ve B'yi bellekte tutma yöntemimiz
+
+operations/
+→ Stack'leri değiştirir
+  sa, pb, ra...
+
+algorithms/
+→ hangi operation'ın ne zaman yapılacağına karar verir
+
+utils/
+→ bunlara yardımcı olur
+--------------------------------------------------------------------
