@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   push_swap.h                                       :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/08/23 21:24:22 by aryaprak         #+#    #+#              */
+/*   Updated: 2026/08/23 22:44:55 by aryaprak        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -6,10 +18,24 @@
 
 typedef struct s_node
 {
-    int				value;
-    int             index;
-    struct s_node	*next;
+	int				value;
+	int				index;
+	struct s_node	*next;
 }	t_node;
+
+typedef enum e_strategy
+{
+	STRATEGY_ADAPTIVE,
+	STRATEGY_SIMPLE,
+	STRATEGY_MEDIUM,
+	STRATEGY_COMPLEX
+}	t_strategy;
+
+typedef struct s_options
+{
+	t_strategy	strategy;
+	int			bench;
+}	t_options;
 
 void	sa(t_node **a);
 void	sb(t_node **b);
@@ -37,5 +63,10 @@ void	sort_complex(t_node **a, t_node **b);
 void	sort_adaptive(t_node **a, t_node **b);
 
 int		is_empty(t_node **a);
-
+int		parse_int(const char *str, int *result);
+t_node	*new_node(int value);
+void	add_node_back(t_node **stack, t_node *new);
+int		has_duplicate(t_node *stack, int value);
+void	init_stack(t_node **a, int argc, char **argv, int start);
+int		parse_options(int argc, char **argv, t_options *options);
 #endif
