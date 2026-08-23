@@ -202,3 +202,42 @@ utils/
 sa, sb, ss, pa ve pb fonksiyonları yazıldı. 
 
 stack_utils.c ye bazı yardımcı fonksiyonlar eklendi.
+
+--------------------------------------------------------------------
+
+Parsing kısmında yapılanlar:
+
+parse_int
+→ String olarak gelen sayının geçerli olup olmadığını kontrol eder.
+→ İşaret kontrolü yapar ve int sınırını aşan değerleri reddeder.
+
+has_duplicate
+→ Stack içinde aynı sayıdan daha önce eklenmiş mi kontrol eder.
+
+new_node
+→ Gelen sayı için yeni bir linked list node'u oluşturur.
+
+add_node_back
+→ Yeni node'u Stack A'nın sonuna ekler ve argüman sırasını korur.
+
+init_stack
+→ Argümanları kontrol eder ve geçerli sayılardan Stack A'yı oluşturur.
+
+free_stack / error_exit
+→ Hata durumunda ayrılan belleği temizler ve stderr'e Error yazar.
+
+parse_options
+→ --simple, --medium, --complex, --adaptive ve --bench flag'lerini ayırır.
+→ Flag verilmezse varsayılan strateji adaptive olur.
+
+Sıradaki adım:
+→ parse_options ve init_stack fonksiyonlarını main'e bağlamak.
+→ "8 3 5" şeklinde tek string olarak verilen sayıları ayırmak.
+
+
+--------------------------------------------------------------------
+-yahya
+
+operations fonksiyonları tamamlandı. parsing işleminde yazdığın kodlara bakıcam. 
+
+--------------------------------------------------------------------

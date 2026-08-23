@@ -14,29 +14,24 @@
 
 void	sa(t_node **a)
 {
-	t_node	*temp1;
-	t_node	*temp2;
+	t_node	*first;
+	t_node	*second;
 
-	if (is_empty(a) || (*a)->next)
+	if (is_empty(a) || !(*a)->next)
 		return ;
-	temp1 = (*a);
-	temp1->next = (*a)->next->next;
-	(*a)->next = temp1;
+	first = *a;
+	second = first->next;
+	first->next = second->next;
+	second->next = first;
+	*a = second;
 }
 
 void	sb(t_node **b)
 {
-	t_node	*temp1;
-	t_node	*temp2;
-
-	if (is_empty(b) || (*b)->next)
-		return ;
-	temp1 = (*b);
-	temp1->next = (*b)->next->next;
-	(*b)->next = temp1;
+	sa(b);
 }
 void	ss(t_node **a, t_node **b)
 {
 	sa(a);
-	sb(b);
+	sa(b);
 }

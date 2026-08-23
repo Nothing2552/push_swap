@@ -14,8 +14,24 @@
 
 void	ra(t_node **a)
 {
+	if (!a || !*a || !(*a)->next)
+    	return ;
+	t_node	*temp;
+	t_node	*last_node;
 
+	temp = *a;
+	*a = (*a)->next;
+	last_node = find_last_node(a);
+	last_node->next = temp;
+	temp->next = NULL;
 }
 
-void	rb(t_node **b);
-void	rr(t_node **a, t_node **b);
+void	rb(t_node **b)
+{
+	ra(b);
+}
+void	rr(t_node **a, t_node **b)
+{
+	ra(a);
+	ra(b);
+}
