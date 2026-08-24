@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/24 16:38:41 by yaydilek          #+#    #+#             */
+/*   Updated: 2026/08/24 16:40:41 by yaydilek         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -55,6 +67,7 @@ int		is_empty(t_node **a);
 t_node	*pop(t_node **a);
 void	push(t_node **a, t_node *node_to_push);
 t_node	*find_last_node(t_node **a);
+int		get_stack_size(t_node *a);
 
 int		parse_int(const char *str, int *result);
 t_node	*new_node(int value);

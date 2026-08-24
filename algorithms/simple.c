@@ -6,7 +6,7 @@
 /*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 13:34:34 by yaydilek          #+#    #+#             */
-/*   Updated: 2026/08/24 14:37:23 by yaydilek         ###   ########.fr       */
+/*   Updated: 2026/08/24 16:40:12 by yaydilek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,6 @@ static int	is_sorted(t_node *a)
 		a = a->next;
 	}
 	return (1);
-}
-
-static int	get_stack_size(t_node *a)
-{
-    int size;
-
-    size = 0;
-    while (a)
-    {
-        size++;
-        a = a->next;
-    }
-    return (size);
 }
 
 static int	find_min_index(t_node **a)

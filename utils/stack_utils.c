@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/24 16:38:10 by yaydilek          #+#    #+#             */
+/*   Updated: 2026/08/24 16:40:23 by yaydilek         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -37,4 +48,17 @@ t_node	*find_last_node(t_node	**a)
 		current = current->next;
 	}
 	return (current);
+}
+
+int	get_stack_size(t_node *a)
+{
+    int size;
+
+    size = 0;
+    while (a)
+    {
+        size++;
+        a = a->next;
+    }
+    return (size);
 }
