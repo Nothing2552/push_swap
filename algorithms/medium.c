@@ -22,4 +22,4 @@ static int stack_size(t_node *stack)
 	}
 	return (i);
 }
-static void push_chunks()
+static void push_chunks();
