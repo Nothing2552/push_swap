@@ -46,15 +46,15 @@ void	free_stack(t_node **stack);
 void	error_exit(t_node **a, t_node **b);
 
 double	compute_disorder(t_node *a);
-void	sort_simple(t_node **a, t_node **b);
+int		sort_simple(t_node **a, t_node **b);
 void	sort_medium(t_node **a, t_node **b);
 void	sort_complex(t_node **a, t_node **b);
 void	sort_adaptive(t_node **a, t_node **b);
 
 int		is_empty(t_node **a);
-t_node  *pop(t_node **a);
-void    push(t_node **a, t_node **b);
-t_node  *find_last_node(t_node **a);
+t_node	*pop(t_node **a);
+void	push(t_node **a, t_node *node_to_push);
+t_node	*find_last_node(t_node **a);
 
 int		parse_int(const char *str, int *result);
 t_node	*new_node(int value);

@@ -12,7 +12,18 @@
 
 #include "push_swap.h"
 
-int get_stack_size(t_node *a)
+static int	is_sorted(t_node *a)
+{
+	while (a && a->next)
+	{
+		if (a->value > a->next->value)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
+static int	get_stack_size(t_node *a)
 {
     int size;
 
@@ -25,7 +36,7 @@ int get_stack_size(t_node *a)
     return (size);
 }
 
-int find_min_index(t_node **a)
+static int	find_min_index(t_node **a)
 {
     t_node  *curr;
     int     min_val;
@@ -50,7 +61,7 @@ int find_min_index(t_node **a)
     }
     return (min_idx);
 }
-int	util_operations(t_node **a, t_node **b, int size, int min_idx)
+static int	util_operations(t_node **a, t_node **b, int size, int min_idx)
 {
 	int count_operations;
 
@@ -78,13 +89,15 @@ int	util_operations(t_node **a, t_node **b, int size, int min_idx)
 	return (count_operations);
 }
 
-int	selection_sort(t_node **a, t_node **b)
+int	sort_simple(t_node **a, t_node **b)
 {
     int size;
     int min_idx;
 	int	count_operations;
 
 	count_operations = 0;
+	if (!a || is_sorted(*a))
+		return (0);
     while (!is_empty(a))
     {
         size = get_stack_size(*a);

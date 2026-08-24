@@ -17,7 +17,7 @@ void	rra(t_node **a)
 	current->next = NULL;
 	last_node->next = *a;
 	*a = last_node;
-	write(1, "rra\n", 3);
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_node **b)
@@ -36,7 +36,7 @@ void	rrb(t_node **b)
 	current->next = NULL;
 	last_node->next = *b;
 	*b = last_node;
-	write(1, "rrb\n", 3);
+	write(1, "rrb\n", 4);
 }
 
 void	rrr(t_node **a, t_node **b)
