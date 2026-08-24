@@ -6,7 +6,7 @@
 /*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:38:21 by yaydilek          #+#    #+#             */
-/*   Updated: 2026/08/24 16:54:12 by yaydilek         ###   ########.fr       */
+/*   Updated: 2026/08/24 18:09:57 by yaydilek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,57 +33,43 @@ int	binary_search(int *values, int size, int value)
     return -1;
 }
 
-void	merge(int arr[], int l, int m, int r)
+void sort_values(int *values, int size)
 {
-    int i, j, k;
-    int n1 = m - l + 1;
-    int n2 = r - m;
-    int L[n1], R[n2];
+    int i;
+    int j;
+    int temp;
 
-    for (i = 0; i < n1; i++)
-        L[i] = arr[l + i];
-    for (j = 0; j < n2; j++)
-        R[j] = arr[m + 1 + j];
     i = 0;
-    j = 0;
-    k = l;
-    while (i < n1 && j < n2)
-	{
-        if (L[i] <= R[j])
-		{
-            arr[k] = L[i];
-            i++;
-        }
-        else
-		{
-            arr[k] = R[j];
+    while (i < size - 1)
+    {
+        j = 0;
+        while (j < size - i - 1)
+        {
+            if (values[j] > values[j + 1])
+            {
+                temp = values[j];
+                values[j] = values[j + 1];
+                values[j + 1] = temp;
+            }
             j++;
         }
-        k++;
-    }
-    while (i < n1)
-	{
-        arr[k] = L[i];
         i++;
-        k++;
-    }
-    while (j < n2)
-	{
-        arr[k] = R[j];
-        j++;
-        k++;
     }
 }
 
-void mergeSort(int arr[], int l, int r)
+void	copy_values(t_node *stack, int *values)
 {
-    if (l < r)
+	int		i;
+	t_node	*current;
+
+	current = stack;
+	i = 0;
+	while (current)
 	{
-        int m = l + (r - l) / 2;
-    mergeSort(arr, l, m);
-    mergeSort(arr, m + 1, r);
-    merge(arr, l, m, r);
-    }
+		values[i] = current->value;
+		current = current->next;
+		i++;
+	}
 }
 
 int assign_indexes(t_node *stack)
@@ -96,7 +82,7 @@ int assign_indexes(t_node *stack)
 	if (!values)
 		return (0);
 	copy_values(stack, values);
-	merge_sort(values, 0, size - 1);
+	sort_values(values, size);
 	while (stack)
 	{
 		stack->index = binary_search(values, size, stack->value);
