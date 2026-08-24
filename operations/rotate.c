@@ -6,7 +6,7 @@
 /*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 20:46:20 by yaydilek          #+#    #+#             */
-/*   Updated: 2026/08/22 21:00:32 by yaydilek         ###   ########.fr       */
+/*   Updated: 2026/08/24 14:26:30 by yaydilek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,22 @@ void	ra(t_node **a)
 	last_node = find_last_node(a);
 	last_node->next = temp;
 	temp->next = NULL;
+	write(1, "ra\n", 3);
 }
 
 void	rb(t_node **b)
 {
-	ra(b);
+	if (!b || !*b || !(*b)->next)
+    	return ;
+	t_node	*temp;
+	t_node	*last_node;
+
+	temp = *b;
+	*b = (*b)->next;
+	last_node = find_last_node(b);
+	last_node->next = temp;
+	temp->next = NULL;
+	write(1, "rb\n", 3);
 }
 void	rr(t_node **a, t_node **b)
 {
