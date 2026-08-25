@@ -10,18 +10,7 @@ static int int_sqrt(int size)
 		i++;
 	return (i);
 }
-static int stack_size(t_node *stack)
-{
-	int i;
 
-	i = 0;
-	while (stack)
-	{
-		i++;
-		stack = stack->next;
-	}
-	return (i);
-}
 static int is_sorted_medium(t_node *stack)
 {
 	while (stack && stack->next)

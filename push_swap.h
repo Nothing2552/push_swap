@@ -36,7 +36,28 @@ typedef struct s_options
 	t_strategy	strategy;
 	int			bench;
 }	t_options;
-
+typedef enum e_operation
+{
+	OP_SA,
+	OP_SB,
+	OP_SS,
+	OP_PA,
+	OP_PB,
+	OP_RA,
+	OP_RB,
+	OP_RR,
+	OP_RRA,
+	OP_RRB,
+	OP_RRR,
+	OP_COUNT
+}	t_operation;
+typedef struct s_benchmark
+{
+	long			counts[OP_COUNT];
+	long			total;
+	double			disorder;
+	t_strategy		strategy;
+}	t_benchmark;
 
 void	sa(t_node **a);
 void	sb(t_node **b);
@@ -75,5 +96,7 @@ void	add_node_back(t_node **stack, t_node *new);
 int		has_duplicate(t_node *stack, int value);
 void	init_stack(t_node **a, int argc, char **argv, int start);
 int		parse_options(int argc, char **argv, t_options *options);
+void	benchmark_init(t_benchmark *bench);
+void	benchmark_count(t_benchmark *bench, t_operation operation);
 
 #endif
