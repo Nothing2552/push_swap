@@ -89,6 +89,7 @@ t_node	*pop(t_node **a);
 void	push(t_node **a, t_node *node_to_push);
 t_node	*find_last_node(t_node **a);
 int		get_stack_size(t_node *a);
+int		assign_indexes(t_node *stack);
 
 int		parse_int(const char *str, int *result);
 t_node	*new_node(int value);
@@ -98,5 +99,10 @@ void	init_stack(t_node **a, int argc, char **argv, int start);
 int		parse_options(int argc, char **argv, t_options *options);
 void	benchmark_init(t_benchmark *bench);
 void	benchmark_count(t_benchmark *bench, t_operation operation);
+void	benchmark_print(t_benchmark *bench);
+void	benchmark_print_disorder(double disorder);
+void	bench_putstr(char *str);
+void	bench_putnbr(long number);
+void	bench_put_metric(char *name, long value);
 
 #endif

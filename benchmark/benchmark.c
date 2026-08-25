@@ -5,6 +5,8 @@ void	benchmark_init(t_benchmark *bench)
 {
 	int	i;
 
+	if (!bench)
+		return ;
 	i = 0;
 	while (i < OP_COUNT)
 	{
@@ -18,7 +20,7 @@ void	benchmark_init(t_benchmark *bench)
 
 void	benchmark_count(t_benchmark *bench, t_operation operation)
 {
-	if (!bench)
+	if (!bench || operation < OP_SA || operation >= OP_COUNT)
 		return ;
 	bench->counts[operation]++;
 	bench->total++;

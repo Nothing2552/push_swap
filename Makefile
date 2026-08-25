@@ -3,7 +3,12 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -I.
 RM = rm -f
 SRC = main.c \
+	algorithms/disorder.c \
+	algorithms/medium.c \
 	algorithms/simple.c \
+	benchmark/benchmark.c \
+	benchmark/benchmark_print.c \
+	benchmark/benchmark_utils.c \
 	operations/push.c \
 	operations/reverse_rotate.c \
 	operations/rotate.c \
@@ -12,6 +17,7 @@ SRC = main.c \
 	parsing/init_stack.c \
 	parsing/parse_args.c \
 	utils/error.c \
+	utils/sort_utils.c \
 	utils/stack_utils.c \
 	utils/stack_utils2.c
 OBJ = $(SRC:.c=.o)
