@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   swap.c                                            :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/08/22 20:17:42 by aryaprak         #+#    #+#              */
-/*   Updated: 2026/08/23 21:24:19 by aryaprak        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/22 20:17:42 by yaydilek          #+#    #+#             */
+/*   Updated: 2026/08/24 14:27:16 by yaydilek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	sa(t_node **a)
 	first->next = second->next;
 	second->next = first;
 	*a = second;
+	write(1, "sa\n", 3);
 }
 
 void	sb(t_node **b)
@@ -38,10 +39,11 @@ void	sb(t_node **b)
 	first->next = second->next;
 	second->next = first;
 	*b = second;
+	write(1, "sb\n", 3);
 }
 
 void	ss(t_node **a, t_node **b)
 {
 	sa(a);
-	sb(b);
+	sa(b);
 }

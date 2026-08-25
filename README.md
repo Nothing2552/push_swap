@@ -233,3 +233,11 @@ parse_options
 Sıradaki adım:
 → parse_options ve init_stack fonksiyonlarını main'e bağlamak.
 → "8 3 5" şeklinde tek string olarak verilen sayıları ayırmak.
+
+
+--------------------------------------------------------------------
+-yahya
+
+operations fonksiyonları tamamlandı. parsing işleminde yazdığın kodlara bakıcam. 
+
+--------------------------------------------------------------------
