@@ -25,7 +25,25 @@ static void	run_strategy(t_node **a, t_node **b, t_options *options)
 	if (options->strategy == STRATEGY_SIMPLE)
 		sort_simple(a, b);
 	else if (options->strategy == STRATEGY_MEDIUM)
-		sort_medium(a, b);
+	{
+        assign_index(a);
+        sort_medium(&a, &b);
+    } 
+    else if (options->strategy == STRATEGY_COMPLEX)
+    {
+        assign_index(a);
+        radix_sort(&a, &b);
+    }  
+    else if (options->strategy == STRATEGY_ADAPTIVE)
+    {
+        if (get_stack_size(a) <= 5)
+            sort_small(&a, &b);
+        else
+        {
+            assign_index(a);
+            radix_sort(&a, &b);
+        }
+    }
 }
 
 int	main(int argc, char **argv)
