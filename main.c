@@ -12,24 +12,52 @@
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_node	*a;
-	t_node	*b;
-	t_options	options;
-	int		start;
+    t_node      *a;
+    t_node      *b;
+    t_options   options;
+    int         start;
 
-	a = NULL;
-	b = NULL;
-	if (argc == 1)
-		return (0);
-	start = parse_options(argc, argv, &options);
-	if (start == -1 || start == argc)
-		error_exit(&a, &b);
-	init_stack(&a, argc, argv, start);
-	if (options.strategy == STRATEGY_SIMPLE)
-		sort_simple(&a, &b);
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
+    a = NULL;
+    b = NULL;
+    if (argc == 1)
+        return (0);
+        
+    start = parse_options(argc, argv, &options);
+    if (start == -1 || start == argc)
+        error_exit(&a, &b);
+        
+    init_stack(&a, argc, argv, start);
+
+    if (compute_disorder(a) > 0)
+    {
+        if (options.strategy == STRATEGY_SIMPLE)
+            sort_simple(&a, &b);    
+        else if (options.strategy == STRATEGY_MEDIUM)
+		{
+            assign_index(a);
+            sort_medium(&a, &b);
+        } 
+        else if (options.strategy == STRATEGY_COMPLEX)
+        {
+            assign_index(a);
+            radix_sort(&a, &b);
+        }  
+        else if (options.strategy == STRATEGY_ADAPTIVE)
+        {
+            if (get_stack_size(a) <= 5)
+                sort_small(&a, &b);
+            else
+            {
+                assign_index(a);
+                radix_sort(&a, &b);
+            }
+        }
+    }
+    if (options.bench)
+        print_benchmark_results(); 
+    free_stack(&a);
+    free_stack(&b);
+    return (0);
 }
