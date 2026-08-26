@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/22 20:46:20 by yaydilek          #+#    #+#             */
-/*   Updated: 2026/08/24 14:26:30 by yaydilek         ###   ########.fr       */
+/*                                                       :::      ::::::::    */
+/*   rotate.c                                          :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/08/22 20:46:20 by aryaprak         #+#    #+#              */
+/*   Updated: 2026/08/26 20:13:02 by aryaprak        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ra(t_node **a, t_benchmark *bench)
+void	ra(t_node **a, t_benchmark *bench)
 {
-	if (!a || !*a || !(*a)->next)
-		return;
-	t_node *temp;
-	t_node *last_node;
+	t_node	*temp;
+	t_node	*last_node;
 
+	if (!a || !*a || !(*a)->next)
+		return ;
 	temp = *a;
 	*a = (*a)->next;
 	last_node = find_last_node(a);
@@ -28,13 +28,13 @@ void ra(t_node **a, t_benchmark *bench)
 	benchmark_count(bench, OP_RA);
 }
 
-void rb(t_node **b, t_benchmark *bench)
+void	rb(t_node **b, t_benchmark *bench)
 {
-	if (!b || !*b || !(*b)->next)
-		return;
-	t_node *temp;
-	t_node *last_node;
+	t_node	*temp;
+	t_node	*last_node;
 
+	if (!b || !*b || !(*b)->next)
+		return ;
 	temp = *b;
 	*b = (*b)->next;
 	last_node = find_last_node(b);
@@ -43,7 +43,8 @@ void rb(t_node **b, t_benchmark *bench)
 	write(1, "rb\n", 3);
 	benchmark_count(bench, OP_RB);
 }
-void rr(t_node **a, t_node **b, t_benchmark *bench)
+
+void	rr(t_node **a, t_node **b, t_benchmark *bench)
 {
 	ra(a, bench);
 	ra(b, bench);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/12 14:42:14 by yaydilek          #+#    #+#             */
-/*   Updated: 2026/08/26 18:16:08 by yaydilek         ###   ########.fr       */
+/*                                                       :::      ::::::::    */
+/*   ft_split.c                                        :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/08/12 14:42:14 by aryaprak         #+#    #+#              */
+/*   Updated: 2026/08/26 20:10:12 by aryaprak        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char	*fill_word(char const *s, char c, size_t *j)
 	while (s[*j] && s[*j] == c)
 		(*j)++;
 	word_len = find_word_len(s, c, *j);
-	word = (char *)malloc((word_len + 1) * sizeof(char));
+	word = (char *) malloc((word_len + 1) * sizeof(char));
 	if (!word)
 		return (NULL);
 	ft_strlcpy(word, &s[*j], word_len + 1);
@@ -89,7 +89,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	word_count = find_words_count(s, c);
-	d = (char **)ft_calloc((word_count + 1), sizeof(char *));
+	d = (char **) ft_calloc((word_count + 1), sizeof(char *));
 	if (!d)
 		return (NULL);
 	i = 0;

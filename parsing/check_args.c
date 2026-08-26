@@ -6,11 +6,25 @@
 /*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/08/23 21:24:09 by aryaprak         #+#    #+#              */
-/*   Updated: 2026/08/23 22:34:11 by aryaprak        ###   ########.fr        */
+/*   Updated: 2026/08/26 20:13:13 by aryaprak        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	str_to_nbr(int *i, long *number, const char *str, int sign)
+{
+	while (str[*i])
+	{
+		if (str[*i] < '0' || str[*i] > '9')
+			return (0);
+		*number = *number * 10 + (str[*i] - '0');
+		if ((sign == 1 && *number > 2147483647)
+			|| (sign == -1 && *number > 2147483648))
+			return (0);
+		(*i)++;
+	}
+}
 
 int	parse_int(const char *str, int *result)
 {
@@ -31,16 +45,8 @@ int	parse_int(const char *str, int *result)
 	}
 	if (!str[i])
 		return (0);
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		number = number * 10 + (str[i] - '0');
-		if ((sign == 1 && number > 2147483647)
-				|| (sign == -1 && number > 2147483648))
+	if (str_to_nbr(&i, &number, str, sign))
 		return (0);
-		i++;
-	}
 	*result = (int)(number * sign);
 	return (1);
 }

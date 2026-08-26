@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   disorder.c                                        :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/08/26 20:11:09 by aryaprak         #+#    #+#              */
+/*   Updated: 2026/08/26 20:11:09 by aryaprak        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -25,5 +36,5 @@ double	compute_disorder(t_node *stack)
 	}
 	if (total_pairs == 0)
 		return (0.0);
-	return ((double)mistakes / (double)total_pairs);
+	return ((double) mistakes / (double) total_pairs);
 }

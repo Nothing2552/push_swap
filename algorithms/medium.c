@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   medium.c                                          :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/08/26 20:11:12 by aryaprak         #+#    #+#              */
+/*   Updated: 2026/08/26 20:11:49 by aryaprak        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-static int int_sqrt(int size)
+
+static int	int_sqrt(int size)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (size <= 0)
@@ -11,7 +24,7 @@ static int int_sqrt(int size)
 	return (i);
 }
 
-static int is_sorted_medium(t_node *stack)
+static int	is_sorted_medium(t_node *stack)
 {
 	while (stack && stack->next)
 	{
@@ -21,9 +34,10 @@ static int is_sorted_medium(t_node *stack)
 	}
 	return (1);
 }
-static void push_chunks(t_node **a, t_node **b, int range, t_benchmark *bench)
+
+static void	push_chunks(t_node **a, t_node **b, int range, t_benchmark *bench)
 {
-	int pushed;
+	int	pushed;
 
 	pushed = 0;
 	while (*a)
@@ -43,11 +57,12 @@ static void push_chunks(t_node **a, t_node **b, int range, t_benchmark *bench)
 			ra(a, bench);
 	}
 }
-static int find_max_position(t_node *stack)
+
+static int	find_max_position(t_node *stack)
 {
-	int max_index;
-	int max_position;
-	int position;
+	int	max_index;
+	int	max_position;
+	int	position;
 
 	max_index = stack->index;
 	max_position = 0;
@@ -64,18 +79,19 @@ static int find_max_position(t_node *stack)
 	}
 	return (max_position);
 }
-void sort_medium(t_node **a, t_node **b, t_benchmark *bench)
+
+void	sort_medium(t_node **a, t_node **b, t_benchmark *bench)
 {
-	int size;
-	int range;
-	int max_position;
+	int	size;
+	int	range;
+	int	max_position;
 
 	if (!a || !*a || !(*a)->next)
-		return;
+		return ;
 	if (!assign_indexes(*a))
 		error_exit(a, b);
 	if (is_sorted_medium(*a))
-		return;
+		return ;
 	size = get_stack_size(*a);
 	range = int_sqrt(size);
 	push_chunks(a, b, range, bench);

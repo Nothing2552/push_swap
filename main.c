@@ -1,26 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/23 22:38:28 by aryaprak          #+#    #+#             */
-/*   Updated: 2026/08/26 18:50:10 by yaydilek         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "push_swap.h"
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/23 22:38:28 by aryaprak          #+#    #+#             */
-/*   Updated: 2026/08/26 18:48:07 by yaydilek         ###   ########.fr       */
+/*                                                       :::      ::::::::    */
+/*   main.c                                            :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/08/23 22:38:28 by aryaprak         #+#    #+#              */
+/*   Updated: 2026/08/26 20:15:48 by aryaprak        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +41,15 @@ static char	**get_new_argv(int argc, char **argv, int *new_argc)
 	return (free(split), res);
 }
 
-static void	prepare_benchmark(t_benchmark *bench, t_node *a,
-                              t_options *options)
+static void	prepare_benchmark(t_benchmark *bench, t_node *a, t_options *options)
 {
 	benchmark_init(bench);
 	bench->disorder = compute_disorder(a);
 	bench->strategy = options->strategy;
 }
 
-static void	run_strategy(t_node **a, t_node **b, t_options *options,
-                         t_benchmark *bench)
+static void	run_strategy(t_node **a, t_node **b,
+			t_options *options, t_benchmark *bench)
 {
 	if (options->strategy == STRATEGY_SIMPLE)
 		sort_simple(a, b, bench);
