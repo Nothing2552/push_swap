@@ -6,7 +6,7 @@
 /*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 13:34:34 by yaydilek          #+#    #+#             */
-/*   Updated: 2026/08/26 15:33:16 by yaydilek         ###   ########.fr       */
+/*   Updated: 2026/08/26 16:21:47 by yaydilek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int simple_conditions(t_node **a, t_node **b, int size, int min_idx)
     count_operations += sort_three(a);
     pa(a, b);
     pa(a, b);
+    
     return (count_operations);
 }
 
@@ -132,21 +133,6 @@ int	sort_simple(t_node **a, t_node **b)
 	count_operations = 0;
 	if (!a || is_sorted(*a))
 		return (0);
-<<<<<<< HEAD
-	while (!is_empty(a))
-	{
-		size = get_stack_size(*a);
-		min_idx = find_min_index(a);
-		if (size <= 5)
-		{
-			return (simple_conditions(a, b, size, min_idx));
-		}
-		count_operations += util_operations(a, b, size, min_idx, bench);
-	}
-	while (!is_empty(b))
-	{
-		pa(a, b, bench);
-=======
     while (!is_empty(a))
     {
         size = get_stack_size(*a);
@@ -160,7 +146,6 @@ int	sort_simple(t_node **a, t_node **b)
     while (!is_empty(b))
     {
         pa(a, b);
->>>>>>> 53e7a20 (deneme)
 		count_operations++;
     }
 	return (count_operations);
