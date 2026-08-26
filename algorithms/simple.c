@@ -6,7 +6,7 @@
 /*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 13:34:34 by yaydilek          #+#    #+#             */
-/*   Updated: 2026/08/26 16:21:47 by yaydilek         ###   ########.fr       */
+/*   Updated: 2026/08/26 16:27:38 by yaydilek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	find_min_index(t_node **a)
     return (min_idx);
 }
 
-static int	util_operations(t_node **a, t_node **b, int size, int min_idx)
+static int	util_operations(t_node **a, t_node **b, int size, int min_idx, t_benchmark *bench)
 {
 	int count_operations;
 
@@ -58,7 +58,7 @@ static int	util_operations(t_node **a, t_node **b, int size, int min_idx)
     {
         while (min_idx > 0)
         {
-            ra(a);
+            ra(a, bench);
 			count_operations++;
             min_idx--;
         }
@@ -67,17 +67,17 @@ static int	util_operations(t_node **a, t_node **b, int size, int min_idx)
     {
         while (min_idx < size)
         {
-            rra(a);
+            rra(a, bench);
 			count_operations++;
             min_idx++;
         }
     }
-    pb(a, b);
+    pb(a, b, bench);
 	count_operations++;
 	return (count_operations);
 }
 
-int sort_three(t_node **a)
+int sort_three(t_node **a, t_benchmark *bench)
 {
     int count_operations;
     int first = (*a)->value;
@@ -87,44 +87,44 @@ int sort_three(t_node **a)
     count_operations = 0;
     if (first > second && first > third)
     {
-        ra(a);
+        ra(a, bench);
         count_operations++;
     }
     else if (second > first && second > third)
     {
-        rra(a);
+        rra(a, bench);
         count_operations++;
     }
     if ((*a)->value > (*a)->next->value)
     {
-        sa(a);
+        sa(a, bench);
         count_operations++;
     }
     return (count_operations);
 }
-int simple_conditions(t_node **a, t_node **b, int size, int min_idx)
+int simple_conditions(t_node **a, t_node **b, int size, int min_idx, t_benchmark *bench)
 {
     int count_operations;
 
     count_operations = 0;
     if (size == 2)
     {
-        sa(a);
+        sa(a, bench);
         return (1);
     }
     while (get_stack_size(*a) > 3)
     {
         min_idx = find_min_index(a);
-        count_operations += util_operations(a, b, get_stack_size(*a), min_idx);
+        count_operations += util_operations(a, b, get_stack_size(*a), min_idx, bench);
     }
-    count_operations += sort_three(a);
-    pa(a, b);
-    pa(a, b);
+    count_operations += sort_three(a, bench);
+    pa(a, b, bench);
+    pa(a, b, bench);
     
     return (count_operations);
 }
 
-int	sort_simple(t_node **a, t_node **b)
+int	sort_simple(t_node **a, t_node **b, t_benchmark *bench)
 {
     int size;
     int min_idx;
@@ -139,13 +139,13 @@ int	sort_simple(t_node **a, t_node **b)
         min_idx = find_min_index(a);
         if (size <= 5)
         {
-            return (simple_conditions(a, b, size, min_idx));
+            return (simple_conditions(a, b, size, min_idx, bench));
         }
-		count_operations += util_operations(a, b, size, min_idx);
+		count_operations += util_operations(a, b, size, min_idx, bench);
     }
     while (!is_empty(b))
     {
-        pa(a, b);
+        pa(a, b, bench);
 		count_operations++;
     }
 	return (count_operations);
