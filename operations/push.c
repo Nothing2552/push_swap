@@ -12,24 +12,26 @@
 
 #include "push_swap.h"
 
-void	pa(t_node **a, t_node **b)
+void pa(t_node **a, t_node **b, t_benchmark *bench)
 {
-	t_node	*temp;
+	t_node *temp;
 
 	if (is_empty(b))
-		return ;
+		return;
 	temp = pop(b);
 	push(a, temp);
 	write(1, "pa\n", 3);
+	benchmark_count(bench, OP_PA);
 }
 
-void	pb(t_node **a, t_node **b)
+void pb(t_node **a, t_node **b, t_benchmark *bench)
 {
-	t_node	*temp;
+	t_node *temp;
 
 	if (is_empty(a))
-		return ;
+		return;
 	temp = pop(a);
 	push(b, temp);
 	write(1, "pb\n", 3);
+	benchmark_count(bench, OP_PB);
 }

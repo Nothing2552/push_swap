@@ -59,30 +59,30 @@ typedef struct s_benchmark
 	t_strategy strategy;
 } t_benchmark;
 
-void sa(t_node **a);
-void sb(t_node **b);
-void ss(t_node **a, t_node **b);
+void sa(t_node **a, t_benchmark *bench);
+void sb(t_node **b, t_benchmark *bench);
+void ss(t_node **a, t_node **b, t_benchmark *bench);
 
-void pa(t_node **a, t_node **b);
-void pb(t_node **a, t_node **b);
+void pa(t_node **a, t_node **b, t_benchmark *bench);
+void pb(t_node **a, t_node **b, t_benchmark *bench);
 
-void ra(t_node **a);
-void rb(t_node **b);
-void rr(t_node **a, t_node **b);
+void ra(t_node **a, t_benchmark *bench);
+void rb(t_node **b, t_benchmark *bench);
+void rr(t_node **a, t_node **b, t_benchmark *bench);
 
-void rra(t_node **a);
-void rrb(t_node **b);
-void rrr(t_node **a, t_node **b);
+void rra(t_node **a, t_benchmark *bench);
+void rrb(t_node **b, t_benchmark *bench);
+void rrr(t_node **a, t_node **b, t_benchmark *bench);
 
 int is_valid_input(int argc, char **argv);
 void free_stack(t_node **stack);
 void error_exit(t_node **a, t_node **b);
 
 double compute_disorder(t_node *a);
-int sort_simple(t_node **a, t_node **b);
-void sort_medium(t_node **a, t_node **b);
-void sort_complex(t_node **a, t_node **b);
-void sort_adaptive(t_node **a, t_node **b);
+int sort_simple(t_node **a, t_node **b, t_benchmark *bench);
+void sort_medium(t_node **a, t_node **b, t_benchmark *bench);
+void sort_complex(t_node **a, t_node **b, t_benchmark *bench);
+void sort_adaptive(t_node **a, t_node **b, t_benchmark *bench);
 
 int is_empty(t_node **a);
 t_node *pop(t_node **a);
@@ -90,7 +90,7 @@ void push(t_node **a, t_node *node_to_push);
 t_node *find_last_node(t_node **a);
 int get_stack_size(t_node *a);
 int assign_indexes(t_node *stack);
-int radix_sort(t_node **stack_a, t_node **stack_b);
+int radix_sort(t_node **stack_a, t_node **stack_b, t_benchmark *bench);
 
 int parse_int(const char *str, int *result);
 t_node *new_node(int value);

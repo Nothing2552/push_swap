@@ -31,7 +31,7 @@ int get_max_bits(t_node *stack)
 	return (max_bits);
 }
 
-int radix_process_bit(t_node **stack_a, t_node **stack_b, int bit, int size)
+int radix_process_bit(t_node **stack_a, t_node **stack_b, int bit, int size, t_benchmark *bench)
 {
 	int j;
 	int moves;
@@ -42,25 +42,25 @@ int radix_process_bit(t_node **stack_a, t_node **stack_b, int bit, int size)
 	{
 		if ((((*stack_a)->index >> bit) & 1))
 		{
-			ra(stack_a);
+			ra(stack_a, bench);
 			moves++;
 		}
 		else
 		{
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, bench);
 			moves++;
 		}
 		j++;
 	}
 	while (*stack_b != NULL)
 	{
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, bench);
 		moves++;
 	}
 	return (moves);
 }
 
-int radix_sort(t_node **stack_a, t_node **stack_b)
+int radix_sort(t_node **stack_a, t_node **stack_b, t_benchmark *bench)
 {
 	int i;
 	int max_bits;
@@ -76,7 +76,7 @@ int radix_sort(t_node **stack_a, t_node **stack_b)
 	{
 		if (is_sorted(*stack_a))
 			break;
-		total_moves += radix_process_bit(stack_a, stack_b, i, size);
+		total_moves += radix_process_bit(stack_a, stack_b, i, size, bench);
 		i++;
 	}
 	return (total_moves);
