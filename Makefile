@@ -10,6 +10,11 @@ SRC = main.c \
 	benchmark/benchmark.c \
 	benchmark/benchmark_print.c \
 	benchmark/benchmark_utils.c \
+	libft/ft_calloc.c \
+	libft/ft_bzero.c \
+	libft/ft_free_split.c \
+	libft/ft_strlcpy.c \
+	libft/ft_split.c \
 	operations/push.c \
 	operations/reverse_rotate.c \
 	operations/rotate.c \

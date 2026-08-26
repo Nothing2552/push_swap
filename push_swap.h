@@ -6,7 +6,7 @@
 /*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:38:41 by yaydilek          #+#    #+#             */
-/*   Updated: 2026/08/24 16:40:41 by yaydilek         ###   ########.fr       */
+/*   Updated: 2026/08/26 18:19:06 by yaydilek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,12 @@ t_node *find_last_node(t_node **a);
 int get_stack_size(t_node *a);
 int assign_indexes(t_node *stack);
 int radix_sort(t_node **stack_a, t_node **stack_b, t_benchmark *bench);
+
+char	**ft_split(char const *s, char c);
+void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_bzero(void *s, size_t n);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+void    ft_free_split(char **d);
 
 int parse_int(const char *str, int *result);
 t_node *new_node(int value);
