@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	str_to_nbr(int *i, long *number, const char *str, int sign)
+static int	str_to_nbr(int *i, long *number, const char *str, int sign)
 {
 	while (str[*i])
 	{
