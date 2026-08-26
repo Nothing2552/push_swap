@@ -57,6 +57,7 @@ typedef struct s_benchmark
 	long		total;
 	double		disorder;
 	t_strategy	strategy;
+	t_strategy	effective_strategy;
 }	t_benchmark;
 
 void	sa(t_node **a, t_benchmark *bench);
@@ -104,7 +105,7 @@ int		parse_int(const char *str, int *result);
 t_node	*new_node(int value);
 void	add_node_back(t_node **stack, t_node *new);
 int		has_duplicate(t_node *stack, int value);
-void	init_stack(t_node **a, int argc, char **argv, int start);
+int		init_stack(t_node **a, int argc, char **argv, int start);
 int		parse_options(int argc, char **argv, t_options *options);
 void	benchmark_init(t_benchmark *bench);
 void	benchmark_count(t_benchmark *bench, t_operation operation);

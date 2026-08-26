@@ -24,6 +24,7 @@ static int	str_to_nbr(int *i, long *number, const char *str, int sign)
 			return (0);
 		(*i)++;
 	}
+	return (1);
 }
 
 int	parse_int(const char *str, int *result)
@@ -45,7 +46,7 @@ int	parse_int(const char *str, int *result)
 	}
 	if (!str[i])
 		return (0);
-	if (str_to_nbr(&i, &number, str, sign))
+	if (!str_to_nbr(&i, &number, str, sign))
 		return (0);
 	*result = (int)(number * sign);
 	return (1);

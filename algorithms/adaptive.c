@@ -1,0 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   adaptive.c                                        :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: aryaprak <aryaprak@student.42istanbul    +#+  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/08/26 22:00:00 by aryaprak         #+#    #+#              */
+/*   Updated: 2026/08/26 22:00:00 by aryaprak        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	sort_adaptive(t_node **a, t_node **b, t_benchmark *bench)
+{
+	if (bench->disorder < 0.2)
+	{
+		bench->effective_strategy = STRATEGY_SIMPLE;
+		sort_simple(a, b, bench);
+	}
+	else if (bench->disorder < 0.5)
+	{
+		bench->effective_strategy = STRATEGY_MEDIUM;
+		sort_medium(a, b, bench);
+	}
+	else
+	{
+		bench->effective_strategy = STRATEGY_COMPLEX;
+		sort_complex(a, b, bench);
+	}
+}

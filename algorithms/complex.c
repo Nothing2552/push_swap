@@ -84,3 +84,12 @@ int	radix_sort(t_node **stack_a, t_node **stack_b, t_benchmark *bench)
 	}
 	return (total_moves);
 }
+
+void	sort_complex(t_node **a, t_node **b, t_benchmark *bench)
+{
+	if (!a || !*a || !(*a)->next || is_sorted(*a))
+		return ;
+	if (!assign_indexes(*a))
+		error_exit(a, b);
+	radix_sort(a, b, bench);
+}

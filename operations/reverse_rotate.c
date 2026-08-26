@@ -12,49 +12,50 @@
 
 #include "push_swap.h"
 
-void	rra(t_node **a, t_benchmark *bench)
+static int	reverse_rotate_stack(t_node **stack)
 {
 	t_node	*last_node;
 	t_node	*current;
 
-	if (!a || !*a || !(*a)->next)
-		return ;
-	current = *a;
+	if (!stack || !*stack || !(*stack)->next)
+		return (0);
+	current = *stack;
 	while (current->next->next)
 	{
 		current = current->next;
 	}
 	last_node = current->next;
 	current->next = NULL;
-	last_node->next = *a;
-	*a = last_node;
+	last_node->next = *stack;
+	*stack = last_node;
+	return (1);
+}
+
+void	rra(t_node **a, t_benchmark *bench)
+{
+	if (!reverse_rotate_stack(a))
+		return ;
 	write(1, "rra\n", 4);
 	benchmark_count(bench, OP_RRA);
 }
 
 void	rrb(t_node **b, t_benchmark *bench)
 {
-	t_node	*last_node;
-	t_node	*current;
-
-	if (!b || !*b || !(*b)->next)
+	if (!reverse_rotate_stack(b))
 		return ;
-	current = *b;
-	while (current->next->next)
-	{
-		current = current->next;
-	}
-	last_node = current->next;
-	current->next = NULL;
-	last_node->next = *b;
-	*b = last_node;
 	write(1, "rrb\n", 4);
 	benchmark_count(bench, OP_RRB);
 }
 
 void	rrr(t_node **a, t_node **b, t_benchmark *bench)
 {
-	rra(a, bench);
-	rra(b, bench);
+	int	a_rotated;
+	int	b_rotated;
+
+	a_rotated = reverse_rotate_stack(a);
+	b_rotated = reverse_rotate_stack(b);
+	if (!a_rotated && !b_rotated)
+		return ;
+	write(1, "rrr\n", 4);
 	benchmark_count(bench, OP_RRR);
 }

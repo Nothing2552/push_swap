@@ -43,7 +43,7 @@ void	add_node_back(t_node **stack, t_node *new)
 	last->next = new;
 }
 
-void	init_stack(t_node **a, int argc, char **argv, int start)
+int	init_stack(t_node **a, int argc, char **argv, int start)
 {
 	t_node	*node;
 	int		value;
@@ -53,13 +53,14 @@ void	init_stack(t_node **a, int argc, char **argv, int start)
 	while (i < argc)
 	{
 		if (!parse_int(argv[i], &value))
-			error_exit(a, NULL);
+			return (0);
 		if (has_duplicate(*a, value))
-			error_exit(a, NULL);
+			return (0);
 		node = new_node(value);
 		if (!node)
-			error_exit(a, NULL);
+			return (0);
 		add_node_back(a, node);
 		i++;
 	}
+	return (1);
 }

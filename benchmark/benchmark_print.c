@@ -12,28 +12,40 @@
 
 #include "push_swap.h"
 
-static void	print_simple_strategy(void)
-{
-	bench_putstr("Strategy: simple\n");
-	bench_putstr("Complexity: O(n^2)\n");
-}
-
-static void	print_strategy(t_strategy strategy)
+static void	print_complexity(t_strategy strategy)
 {
 	if (strategy == STRATEGY_SIMPLE)
-		print_simple_strategy();
+		bench_putstr("Complexity: O(n^2)\n");
 	else if (strategy == STRATEGY_MEDIUM)
-	{
-		bench_putstr("Strategy: medium\n");
 		bench_putstr("Complexity: O(n*sqrt(n))\n");
-	}
 	else if (strategy == STRATEGY_COMPLEX)
-	{
-		bench_putstr("Strategy: complex\n");
 		bench_putstr("Complexity: O(n log n)\n");
+}
+
+static void	print_strategy_name(t_strategy strategy)
+{
+	if (strategy == STRATEGY_SIMPLE)
+		bench_putstr("simple\n");
+	else if (strategy == STRATEGY_MEDIUM)
+		bench_putstr("medium\n");
+	else if (strategy == STRATEGY_COMPLEX)
+		bench_putstr("complex\n");
+}
+
+static void	print_strategy(t_benchmark *bench)
+{
+	if (bench->strategy == STRATEGY_ADAPTIVE)
+	{
+		bench_putstr("Strategy: adaptive -> ");
+		print_strategy_name(bench->effective_strategy);
+		print_complexity(bench->effective_strategy);
 	}
 	else
-		bench_putstr("Strategy: adaptive\n");
+	{
+		bench_putstr("Strategy: ");
+		print_strategy_name(bench->strategy);
+		print_complexity(bench->strategy);
+	}
 }
 
 static void	print_operation_counts(t_benchmark *bench)
@@ -56,7 +68,7 @@ void	benchmark_print(t_benchmark *bench)
 	if (!bench)
 		return ;
 	benchmark_print_disorder(bench->disorder);
-	print_strategy(bench->strategy);
+	print_strategy(bench);
 	bench_put_metric("Total operations: ", bench->total);
 	print_operation_counts(bench);
 }

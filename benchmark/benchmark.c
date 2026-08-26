@@ -27,6 +27,7 @@ void	benchmark_init(t_benchmark *bench)
 	bench->total = 0;
 	bench->disorder = 0.0;
 	bench->strategy = STRATEGY_ADAPTIVE;
+	bench->effective_strategy = STRATEGY_ADAPTIVE;
 }
 
 void	benchmark_count(t_benchmark *bench, t_operation operation)

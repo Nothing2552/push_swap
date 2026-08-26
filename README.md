@@ -235,14 +235,17 @@ Operasyon sayısının yanında checker sonucunun da `OK` olması gerekir.
 
 ## Team contributions
 
-Proje iki öğrenci tarafından ortak geliştirilmiştir. Parsing, stack oluşturma,
-hata yönetimi, operasyonlar, algoritmalar, benchmark sistemi, testler ve
-dokümantasyon birlikte gözden geçirilmiştir. Her iki ekip üyesinin de bütün
-stratejileri ve program akışını açıklayabilmesi hedeflenmiştir.
+- `aryaprak`: Parsing, stack yönetimi, operasyonlar, algoritmalar, benchmark,
+  testler ve dokümantasyonun ortak geliştirilmesi ve gözden geçirilmesi.
+- `yaydilek`: Parsing, stack yönetimi, operasyonlar, algoritmalar, benchmark,
+  testler ve dokümantasyonun ortak geliştirilmesi ve gözden geçirilmesi.
+
+Her iki ekip üyesi de dört stratejinin ve program akışının tamamından birlikte
+sorumludur.
 
 ## Resources
 
-- Projeyle birlikte sağlanan `en.subject.pdf`
+- Projeyle birlikte sağlanan `en.subject_push_swap.pdf`
 - [C language reference](https://en.cppreference.com/w/c)
 - [GNU Make manual](https://www.gnu.org/software/make/manual/)
 - [Linked list](https://en.wikipedia.org/wiki/Linked_list)
