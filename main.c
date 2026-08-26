@@ -12,47 +12,47 @@
 
 #include "push_swap.h"
 
-static void	prepare_benchmark(t_benchmark *bench, t_node *a,
-		t_options *options)
+static void prepare_benchmark(t_benchmark *bench, t_node *a,
+							  t_options *options)
 {
 	benchmark_init(bench);
 	bench->disorder = compute_disorder(a);
 	bench->strategy = options->strategy;
 }
 
-static void	run_strategy(t_node **a, t_node **b, t_options *options)
+static void run_strategy(t_node **a, t_node **b, t_options *options)
 {
 	if (options->strategy == STRATEGY_SIMPLE)
 		sort_simple(a, b);
 	else if (options->strategy == STRATEGY_MEDIUM)
 	{
-        assign_index(a);
-        sort_medium(&a, &b);
-    } 
-    else if (options->strategy == STRATEGY_COMPLEX)
-    {
-        assign_index(a);
-        radix_sort(&a, &b);
-    }  
-    else if (options->strategy == STRATEGY_ADAPTIVE)
-    {
-        if (get_stack_size(a) <= 5)
-            sort_small(&a, &b);
-        else
-        {
-            assign_index(a);
-            radix_sort(&a, &b);
-        }
-    }
+		assign_indexes(*a);
+		sort_medium(a, b);
+	}
+	else if (options->strategy == STRATEGY_COMPLEX)
+	{
+		assign_indexes(*a);
+		radix_sort(a, b);
+	}
+	else
+	{
+		if (get_stack_size(*a) <= 5)
+			sort_simple(a, b);
+		else
+		{
+			assign_indexes(*a);
+			radix_sort(a, b);
+		}
+	}
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_node			*a;
-	t_node			*b;
-	t_options		options;
-	t_benchmark		bench;
-	int				start;
+	t_node *a;
+	t_node *b;
+	t_options options;
+	t_benchmark bench;
+	int start;
 
 	a = NULL;
 	b = NULL;

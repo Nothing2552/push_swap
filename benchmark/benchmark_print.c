@@ -1,12 +1,12 @@
 #include "push_swap.h"
 
-static void	print_simple_strategy(void)
+static void print_simple_strategy(void)
 {
 	bench_putstr("Strategy: simple\n");
 	bench_putstr("Complexity: O(n^2)\n");
 }
 
-static void	print_strategy(t_strategy strategy)
+static void print_strategy(t_strategy strategy)
 {
 	if (strategy == STRATEGY_SIMPLE)
 		print_simple_strategy();
@@ -24,7 +24,7 @@ static void	print_strategy(t_strategy strategy)
 		bench_putstr("Strategy: adaptive\n");
 }
 
-static void	print_operation_counts(t_benchmark *bench)
+static void print_operation_counts(t_benchmark *bench)
 {
 	bench_put_metric("sa: ", bench->counts[OP_SA]);
 	bench_put_metric("sb: ", bench->counts[OP_SB]);
@@ -39,10 +39,10 @@ static void	print_operation_counts(t_benchmark *bench)
 	bench_put_metric("rrr: ", bench->counts[OP_RRR]);
 }
 
-void	benchmark_print(t_benchmark *bench)
+void benchmark_print(t_benchmark *bench)
 {
 	if (!bench)
-		return ;
+		return;
 	benchmark_print_disorder(bench->disorder);
 	print_strategy(bench->strategy);
 	bench_put_metric("Total operations: ", bench->total);

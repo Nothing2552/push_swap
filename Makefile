@@ -6,6 +6,7 @@ SRC = main.c \
 	algorithms/disorder.c \
 	algorithms/medium.c \
 	algorithms/simple.c \
+	algorithms/complex.c \
 	benchmark/benchmark.c \
 	benchmark/benchmark_print.c \
 	benchmark/benchmark_utils.c \

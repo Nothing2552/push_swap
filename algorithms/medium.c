@@ -21,9 +21,9 @@ static int is_sorted_medium(t_node *stack)
 	}
 	return (1);
 }
-static void	push_chunks(t_node **a, t_node **b, int range)
+static void push_chunks(t_node **a, t_node **b, int range)
 {
-	int	pushed;
+	int pushed;
 
 	pushed = 0;
 	while (*a)
@@ -43,11 +43,11 @@ static void	push_chunks(t_node **a, t_node **b, int range)
 			ra(a);
 	}
 }
-static int	find_max_position(t_node *stack)
+static int find_max_position(t_node *stack)
 {
-	int	max_index;
-	int	max_position;
-	int	position;
+	int max_index;
+	int max_position;
+	int position;
 
 	max_index = stack->index;
 	max_position = 0;
@@ -64,18 +64,18 @@ static int	find_max_position(t_node *stack)
 	}
 	return (max_position);
 }
-void	sort_medium(t_node **a, t_node **b)
+void sort_medium(t_node **a, t_node **b)
 {
-	int	size;
-	int	range;
-	int	max_position;
+	int size;
+	int range;
+	int max_position;
 
 	if (!a || !*a || !(*a)->next)
-		return ;
+		return;
 	if (!assign_indexes(*a))
 		error_exit(a, b);
 	if (is_sorted_medium(*a))
-		return ;
+		return;
 	size = get_stack_size(*a);
 	range = int_sqrt(size);
 	push_chunks(a, b, range);
