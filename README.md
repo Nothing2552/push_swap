@@ -224,10 +224,9 @@ Operasyon sayısının yanında checker sonucunun da `OK` olması gerekir.
 .
 ├── algorithms/     # Simple, medium, complex ve disorder hesaplama
 ├── benchmark/      # Operasyon sayaçları ve stderr raporu
-├── libft/          # Kullanılan yardımcı libft fonksiyonları
 ├── operations/     # Bütün Push_swap operasyonları
 ├── parsing/        # Seçenek, integer, overflow ve duplicate kontrolleri
-├── utils/          # Stack, sıralama ve hata yardımcıları
+├── utils/          # Yardımcı fonksiyonlar, stack ve sıralama araçları
 ├── main.c          # Parsing, strateji seçimi ve program yaşam döngüsü
 ├── push_swap.h     # Veri türleri ve fonksiyon prototipleri
 └── Makefile

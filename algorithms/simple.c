@@ -56,6 +56,11 @@ void	sort_simple(t_node **a, t_node **b, t_benchmark *bench)
 	if (!a || is_sorted(*a))
 		return ;
 	size = get_stack_size(*a);
+	if (size == 2)
+	{
+		sa(a, bench);
+		return ;
+	}
 	while (get_stack_size(*a) > 3)
 	{
 		min_idx = find_min_index(a);
