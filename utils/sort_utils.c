@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   sort_utils.c                                      :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/08/24 16:38:21 by aryaprak         #+#    #+#              */
-/*   Updated: 2026/08/26 20:14:07 by aryaprak        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aryaprak <aryaprak@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/24 16:38:21 by aryaprak          #+#    #+#             */
+/*   Updated: 2026/08/29 16:50:32 by aryaprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	binary_search(int *values, int size, int value)
+static int	binary_search(int *values, int size, int value)
 {
 	int	low;
 	int	high;
@@ -33,7 +33,7 @@ int	binary_search(int *values, int size, int value)
 	return (-1);
 }
 
-void	sort_values(int *values, int size)
+static void	sort_values(int *values, int size)
 {
 	int	i;
 	int	j;
@@ -57,7 +57,7 @@ void	sort_values(int *values, int size)
 	}
 }
 
-void	copy_values(t_node *stack, int *values)
+static void	copy_values(t_node *stack, int *values)
 {
 	int		i;
 	t_node	*current;

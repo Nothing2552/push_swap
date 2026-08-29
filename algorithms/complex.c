@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   complex.c                                         :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/08/26 19:49:24 by aryaprak         #+#    #+#              */
-/*   Updated: 2026/08/26 20:11:06 by aryaprak        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   complex.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aryaprak <aryaprak@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/26 19:49:24 by aryaprak          #+#    #+#             */
+/*   Updated: 2026/08/29 16:39:58 by aryaprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_max_bits(t_node *stack)
+static int	get_max_bits(t_node *stack)
 {
 	t_node	*current;
 	int		max_index;

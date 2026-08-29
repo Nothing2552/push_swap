@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   init_stack.c                                      :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/08/23 22:06:36 by aryaprak         #+#    #+#              */
-/*   Updated: 2026/08/26 20:10:33 by aryaprak        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   init_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aryaprak <aryaprak@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/23 22:06:36 by aryaprak          #+#    #+#             */
+/*   Updated: 2026/08/29 16:45:51 by aryaprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//Bu fonksiyon, verilen bir sayı için bellekte yeni bir stack elemanı oluşturur.
 
-t_node	*new_node(int value)
+static t_node	*new_node(int value)
 {
 	t_node	*node;
 
@@ -26,7 +25,7 @@ t_node	*new_node(int value)
 	return (node);
 }
 
-void	add_node_back(t_node **stack, t_node *new)
+static void	add_node_back(t_node **stack, t_node *new)
 {
 	t_node	*last;
 

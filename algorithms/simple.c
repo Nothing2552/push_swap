@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: aryaprak <aryaprak@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 13:34:34 by aryaprak          #+#    #+#             */
-/*   Updated: 2026/08/29 13:58:41 by yaydilek         ###   ########.fr       */
+/*   Created: 2026/08/29 16:41:30 by aryaprak          #+#    #+#             */
+/*   Updated: 2026/08/29 16:41:34 by aryaprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

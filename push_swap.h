@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   push_swap.h                                       :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/08/24 16:38:41 by aryaprak         #+#    #+#              */
-/*   Updated: 2026/08/26 20:10:51 by aryaprak        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aryaprak <aryaprak@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/24 16:38:41 by aryaprak          #+#    #+#             */
+/*   Updated: 2026/08/29 16:50:10 by aryaprak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ void	ft_free_split(char **d);
 int		parse_int(const char *str, int *result);
 char	**get_new_argv(int argc, char **argv, int *new_argc);
 void	free_new_argv(char **argv, int argc);
-t_node	*new_node(int value);
-void	add_node_back(t_node **stack, t_node *new);
 int		has_duplicate(t_node *stack, int value);
 int		init_stack(t_node **a, int argc, char **argv, int start);
 int		parse_options(int argc, char **argv, t_options *options);

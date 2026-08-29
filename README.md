@@ -4,127 +4,125 @@
 
 ## Description
 
-`push_swap`, tekrar etmeyen tamsayılardan oluşan bir listeyi iki stack ve sınırlı
-bir operasyon kümesi kullanarak sıralayan bir C programıdır. Program sıralanmış
-sayıları değil, stack A'yı küçükten büyüğe sıralayacak operasyonları standart
-çıktıya yazar.
+`push_swap` is a C program that sorts a list of unique integers using two stacks
+and a limited set of operations. Instead of printing the sorted numbers, it
+writes the operations required to sort stack A in ascending order to `stdout`.
 
-Projenin amacı yalnızca doğru sıralama yapmak değil; farklı girdi düzenleri için
-uygun algoritmayı seçmek, üretilen operasyon sayısını incelemek ve algoritmik
-karmaşıklığı Push_swap operasyon modeli içinde değerlendirmektir.
+The goal is not only to sort correctly, but also to select an appropriate
+algorithm for different input configurations, examine the generated operation
+count, and evaluate complexity within the Push_swap operation model.
 
-Başlangıçta stack A komut satırındaki sayıları içerir, ilk sayı stack'in
-tepesidir ve stack B boştur. Sıralama sonunda A küçükten büyüğe sıralı, B ise boş
-olmalıdır.
+Initially, stack A contains the command-line numbers, with the first number at
+the top, and stack B is empty. At the end, A must be sorted in ascending order
+and B must be empty.
 
 ## Operations
 
-| Operasyon | Açıklama |
+| Operation | Description |
 |---|---|
-| `sa`, `sb` | İlgili stack'in ilk iki elemanını değiştirir. |
-| `ss` | `sa` ve `sb` işlemlerini birlikte uygular. |
-| `pa` | B'nin tepesindeki elemanı A'nın tepesine taşır. |
-| `pb` | A'nın tepesindeki elemanı B'nin tepesine taşır. |
-| `ra`, `rb` | İlk elemanı ilgili stack'in sonuna taşır. |
-| `rr` | `ra` ve `rb` işlemlerini birlikte uygular. |
-| `rra`, `rrb` | Son elemanı ilgili stack'in başına taşır. |
-| `rrr` | `rra` ve `rrb` işlemlerini birlikte uygular. |
+| `sa`, `sb` | Swap the first two elements of the corresponding stack. |
+| `ss` | Perform `sa` and `sb` simultaneously. |
+| `pa` | Move the top element of B to the top of A. |
+| `pb` | Move the top element of A to the top of B. |
+| `ra`, `rb` | Move the first element of the corresponding stack to the bottom. |
+| `rr` | Perform `ra` and `rb` simultaneously. |
+| `rra`, `rrb` | Move the last element of the corresponding stack to the top. |
+| `rrr` | Perform `rra` and `rrb` simultaneously. |
 
-Operasyonlar `stdout` üzerine, her satırda bir operasyon olacak şekilde yazılır.
-Hata ve benchmark bilgileri `stderr` üzerine gönderilir.
+Operations are written to `stdout`, one per line. Errors and benchmark
+information are sent to `stderr`.
 
 ## Data structure and indexing
 
-Stack A ve B tek yönlü bağlı liste ile temsil edilir. Her node gerçek değeri,
-sıralama indexini ve sonraki node'un adresini tutar.
+Stacks A and B are represented as singly linked lists. Each node stores its
+original value, sorted index, and the address of the next node.
 
 ```text
 Values:   40 -> -5 -> 12 -> 100
 Indexes:   2 ->  0 ->  1 ->   3
 ```
 
-İndeksleme sırasında değerler geçici bir diziye kopyalanır, bubble sort ile
-sıralanır ve her değerin derecesi binary search ile ilgili node'a yazılır.
-Stack'in bağlantı sırası değişmez ve bu hazırlık Push_swap operasyonu üretmez.
+During indexing, values are copied into a temporary array and sorted with bubble
+sort. Each value's rank is then found with binary search and assigned to the
+corresponding node. This does not change the linked-list order or generate any
+Push_swap operations.
 
 ## Algorithms
 
-Program dört seçilebilir strateji içerir.
+The program provides four selectable strategies.
 
 ### Simple — selection sort adaptation, O(n²)
 
-Simple strateji A'daki minimum elemanı bulur. Minimum üst yarıdaysa `ra`, alt
-yarıdaysa `rra` kullanılarak en kısa yönden tepeye getirilir ve `pb` ile B'ye
-gönderilir. A'daki küçük kalan bölüm özel olarak sıralandıktan sonra elemanlar
-`pa` ile A'ya geri alınır.
+The simple strategy finds the minimum element in A. If it is in the upper half,
+it is moved to the top with `ra`; otherwise, `rra` is used to take the shorter
+path. It is then pushed to B with `pb`. After the small remaining part of A is
+sorted separately, all elements are returned to A with `pa`.
 
-Her turda minimumu bulmak için kalan stack tarandığından ve bu işlem elemanlar
-azalana kadar tekrarlandığından üst sınırı O(n²)'dir. Anlaşılır bir başlangıç ve
-karşılaştırma algoritması olması nedeniyle simple strateji olarak seçilmiştir.
+The remaining stack is scanned for the minimum on every pass until only a few
+elements remain. Its upper bound is therefore O(n²). It was selected as a clear
+baseline algorithm.
 
 ### Medium — square-root chunk strategy, O(n√n) target
 
-Medium strateji indeksleri yaklaşık `√n` genişliğinde hareketli bir pencere ile
-işler. Aktif aralıktaki node'lar `pb` ile B'ye gönderilir; daha küçük indexler
-`rb` ile B'nin altına yaklaştırılır. Aralığın dışındaki elemanlar `ra` ile
-döndürülerek sıradaki aday incelenir.
+The medium strategy processes indexes through a moving window approximately
+`√n` wide. Nodes in the active range are sent to B with `pb`, while smaller
+indexes are moved closer to the bottom of B with `rb`. Elements outside the
+range are rotated with `ra` until the next candidate is reached.
 
-A boşaldıktan sonra B'deki en büyük index bulunur. Konumuna göre daha kısa olan
-`rb` veya `rrb` yönü seçilir ve node `pa` ile A'ya alınır. Büyük indexlerin önce
-geri alınması, her yeni node A'nın tepesine geldiği için A'yı küçükten büyüğe
-oluşturur. Chunk yaklaşımının hedeflenen Push_swap operasyon karmaşıklığı
-O(n√n)'dir.
+Once A is empty, the largest index in B is located. The shorter direction,
+`rb` or `rrb`, is selected based on its position, and the node is returned to A
+with `pa`. Returning the largest indexes first builds A in ascending order. The
+target Push_swap operation complexity is O(n√n).
 
 ### Complex — binary LSD radix sort, O(n log n)
 
-Complex strateji `0..n-1` aralığındaki indexlerin bitlerini en düşük anlamlı
-bitten başlayarak işler:
+The complex strategy processes the bits of indexes in the `0..n-1` range,
+starting with the least significant bit:
 
-- Mevcut bit `0` ise node `pb` ile B'ye gönderilir.
-- Mevcut bit `1` ise node `ra` ile A'nın sonunda tutulur.
-- Bit turu tamamlanınca B'deki bütün node'lar `pa` ile A'ya alınır.
+- If the current bit is `0`, the node is sent to B with `pb`.
+- If the current bit is `1`, the node is kept in A through `ra`.
+- After each bit pass, all nodes in B are returned to A with `pa`.
 
-Her bit turu O(n) operasyon, gerekli bit sayısı O(log n) olduğundan toplam
-Push_swap operasyon üst sınırı O(n log n)'dir. Radix sort yüksek düzensizlikte
-öngörülebilir performansı nedeniyle complex strateji olarak seçilmiştir.
+Each bit pass generates O(n) operations, and O(log n) bits are required, giving
+an overall upper bound of O(n log n). Radix sort provides predictable performance
+for highly disordered inputs.
 
 ### Adaptive strategy
 
-Disorder, stack'teki ters sıralı çiftlerin bütün çiftlere oranıdır:
+Disorder is the ratio of inverted pairs to all possible pairs in the stack:
 
 ```text
 disorder = inversion_count / total_pair_count
 ```
 
-Değer `0` ile `1` arasındadır. Sıralı stack için `0`, tamamen ters sıralı stack
-için `1` olur ve herhangi bir hareket yapılmadan önce hesaplanır.
+It ranges from `0` to `1`. A sorted stack has a disorder of `0`, while a fully
+reverse-sorted stack has a disorder of `1`. It is calculated before any operation
+is performed.
 
-Adaptive politika:
-
-| Disorder | Seçilecek yöntem | Hedef karmaşıklık |
+| Disorder | Selected method | Target complexity |
 |---:|---|---:|
 | `< 0.2` | Simple | O(n²) |
 | `0.2 <= disorder < 0.5` | Medium | O(n√n) |
 | `>= 0.5` | Complex | O(n log n) |
 
-Düşük disorder değerinde basit yöntem mevcut düzenden yararlanabilir. Orta
-seviyede chunk yaklaşımı quadratic minimum çıkarmaya göre daha düşük operasyon
-hedefler. Yüksek disorder seviyesinde radix sort başlangıç düzeninden bağımsız,
-öngörülebilir bir üst sınır sağlar.
+For low disorder, the simple method can benefit from the existing order. At a
+medium level, the chunk approach targets fewer operations than quadratic minimum
+extraction. For high disorder, radix sort provides a predictable upper bound
+independent of the initial arrangement.
 
 ## Parsing and errors
 
-Program aşağıdaki durumları reddeder:
+The program rejects:
 
-- Tamsayı olmayan argümanlar
-- `INT_MIN..INT_MAX` aralığının dışındaki değerler
-- Tekrarlanan sayılar
-- Bilinmeyen veya tekrarlanan seçenekler
-- Aynı anda birden fazla strateji seçilmesi
-- Seçeneklerden sonra sayı bulunmaması
+- Non-integer arguments
+- Values outside the `INT_MIN..INT_MAX` range
+- Duplicate values
+- Unknown or repeated options
+- Multiple strategy selectors
+- Missing numbers after the options
 
-Hata durumunda `Error\n` stderr üzerine yazılır ve ayrılmış stack belleği serbest
-bırakılır. Sayılar ayrı argümanlar veya tek quoted string olarak verilebilir.
+On error, `Error\n` is written to `stderr`, and allocated stack memory is freed.
+Numbers may be provided as separate arguments or as one quoted string.
 
 ## Instructions
 
@@ -134,25 +132,24 @@ bırakılır. Sayılar ayrı argümanlar veya tek quoted string olarak verilebil
 make
 ```
 
-Derleme `cc -Wall -Wextra -Werror` kullanır ve `push_swap` executable dosyasını
-oluşturur.
+The project is compiled with `cc -Wall -Wextra -Werror`, producing `push_swap`.
 
 ```bash
-make clean    # Object dosyalarını siler
-make fclean   # Object dosyalarını ve executable'ı siler
-make re       # Projeyi baştan derler
+make clean    # Remove object files
+make fclean   # Remove object files and the executable
+make re       # Rebuild the project from scratch
 ```
 
 ### Usage
 
-Varsayılan strateji adaptive'dir:
+The adaptive strategy is used by default:
 
 ```bash
 ./push_swap 4 67 3 87 23
 ./push_swap "4 67 3 87 23"
 ```
 
-Belirli bir stratejiyi zorlamak için:
+To force a specific strategy:
 
 ```bash
 ./push_swap --simple 5 4 3 2 1
@@ -161,29 +158,31 @@ Belirli bir stratejiyi zorlamak için:
 ./push_swap --adaptive 5 4 3 2 1
 ```
 
-Benchmark modu:
+Benchmark mode:
 
 ```bash
 ./push_swap --bench --complex 4 67 3 87 23
 ```
 
-Benchmark raporu başlangıç disorder yüzdesini, strateji ve karmaşıklığı, toplam
-operasyon sayısını ve her operasyonun ayrı sayısını stderr üzerinde gösterir.
+The benchmark report displays the initial disorder percentage, the strategy and
+its complexity, the total operation count, and each individual operation count
+on `stderr`.
 
-Yalnız toplam operasyon sayısını görmek için:
+To display only the total operation count:
 
 ```bash
 ./push_swap --complex 4 67 3 87 23 | wc -l
 ```
 
-### Checker ile doğrulama
+### Verification with the checker
 
 ```bash
 ARG="4 67 3 87 23"
 ./push_swap --complex $ARG | ./checker_linux $ARG
 ```
 
-Beklenen sonuç `OK` olmalıdır. Checker başka bir klasördeyse tam yolu kullan:
+The expected result is `OK`. If the checker is in another directory, use its
+full path:
 
 ```bash
 ARG="4 67 3 87 23"
@@ -191,7 +190,7 @@ ARG="4 67 3 87 23"
 	| /home/aryaprak/Downloads/checker_linux $ARG
 ```
 
-Benchmark raporunu ayrı dosyaya kaydedip operasyonları checker'a vermek için:
+To save the benchmark report separately while piping operations to the checker:
 
 ```bash
 ARG="4 67 3 87 23"
@@ -211,40 +210,44 @@ ARG="$(shuf -i 0-9999 -n 500)"
 ./push_swap $ARG | wc -l
 ```
 
-| Boyut | Minimum geçiş | İyi | Mükemmel |
+| Size | Minimum pass | Good | Excellent |
 |---:|---:|---:|---:|
 | 100 | `< 2000` | `< 1500` | `< 700` |
 | 500 | `< 12000` | `< 8000` | `< 5500` |
 
-Operasyon sayısının yanında checker sonucunun da `OK` olması gerekir.
+Along with meeting the operation-count target, the checker result must be `OK`.
 
 ## Project structure
 
 ```text
 .
-├── algorithms/     # Simple, medium, complex ve disorder hesaplama
-├── benchmark/      # Operasyon sayaçları ve stderr raporu
-├── operations/     # Bütün Push_swap operasyonları
-├── parsing/        # Seçenek, integer, overflow ve duplicate kontrolleri
-├── utils/          # Yardımcı fonksiyonlar, stack ve sıralama araçları
-├── main.c          # Parsing, strateji seçimi ve program yaşam döngüsü
-├── push_swap.h     # Veri türleri ve fonksiyon prototipleri
+├── algorithms/     # Simple, medium, complex, and disorder calculation
+├── benchmark/      # Operation counters and stderr report
+├── operations/     # All Push_swap operations
+├── parsing/        # Option, integer, overflow, and duplicate validation
+├── utils/          # Helpers for parsing, stacks, and sorting
+├── main.c          # Parsing, strategy selection, and program lifecycle
+├── push_swap.h     # Data types and function prototypes
 └── Makefile
 ```
 
 ## Team contributions
 
-- `aryaprak`: Parsing, stack yönetimi, operasyonlar, algoritmalar, benchmark,
-  testler ve dokümantasyonun ortak geliştirilmesi ve gözden geçirilmesi.
-- `yaydilek`: Parsing, stack yönetimi, operasyonlar, algoritmalar, benchmark,
-  testler ve dokümantasyonun ortak geliştirilmesi ve gözden geçirilmesi.
+- `aryaprak`: `algorithms/disorder.c`, `algorithms/medium.c`, all files in
+  `benchmark/`, all files in `parsing/` except `parsing/new_argv.c`, and
+  `utils/error.c`.
+- `yaydilek`: `algorithms/simple.c`, `algorithms/complex.c`, all files in
+  `operations/`, `parsing/new_argv.c`, and all files in `utils/` except
+  `utils/error.c`.
+- Jointly developed: `main.c`, `push_swap.h`, all other files not specifically
+  assigned above, the Makefile, tests, and documentation.
 
-Her iki ekip üyesi de dört stratejinin ve program akışının tamamından birlikte
-sorumludur.
+Both team members reviewed all four strategies and the complete program flow and
+are responsible for being able to explain the entire project.
 
 ## Resources
 
-- Projeyle birlikte sağlanan `en.subject_push_swap.pdf`
+- The `en.subject_push_swap.pdf` supplied with the project
 - [C language reference](https://en.cppreference.com/w/c)
 - [GNU Make manual](https://www.gnu.org/software/make/manual/)
 - [Linked list](https://en.wikipedia.org/wiki/Linked_list)
@@ -254,13 +257,12 @@ sorumludur.
 
 ### Use of AI
 
-AI; subject maddelerini açıklamak, komut satırı parsing ve stack operasyonlarını
-gözden geçirmek, edge-case testleri önermek, selection/chunk/radix
-algoritmalarının çalışma mantığını tartışmak, benchmark ile stdout/stderr
-ayrımını açıklamak ve README yapısını hazırlamak için yardımcı araç olarak
-kullanılmıştır.
+AI was used as an assistive tool to clarify subject requirements, review
+command-line parsing and stack operations, suggest edge-case tests, discuss the
+selection, chunk, and radix algorithms, explain the separation of benchmark
+output between `stdout` and `stderr`, and help structure the README.
 
-AI çıktıları doğrudan doğruluk kanıtı olarak kabul edilmemiştir. Öneriler ekip
-tarafından okunmuş, kodla karşılaştırılmış ve derleyici, Norminette, rastgele
-testler ve sağlanan checker ile doğrulanmak üzere değerlendirilmiştir. Teslim
-edilen kodu anlama ve savunma sorumluluğu ekip üyelerine aittir.
+AI output was not treated as proof of correctness. Suggestions were read by the
+team, compared against the code, and considered for validation with the compiler,
+Norminette, randomized tests, and the provided checker. The team members remain
+responsible for understanding and defending the submitted code.
