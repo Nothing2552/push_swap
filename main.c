@@ -12,35 +12,6 @@
 
 #include "push_swap.h"
 
-static char	**get_new_argv(int argc, char **argv, int *new_argc)
-{
-	char	**split;
-	char	**res;
-	int		i;
-
-	if (argc != 2)
-		return (*new_argc = argc, argv);
-	split = ft_split(argv[1], ' ');
-	if (!split)
-		return (NULL);
-	*new_argc = 0;
-	while (split[*new_argc])
-		(*new_argc)++;
-	res = malloc(sizeof(char *) * (*new_argc + 2));
-	if (!res)
-		return (ft_free_split(split), NULL);
-	res[0] = argv[0];
-	i = 0;
-	while (i < *new_argc)
-	{
-		res[i + 1] = split[i];
-		i++;
-	}
-	res[*new_argc + 1] = NULL;
-	(*new_argc)++;
-	return (free(split), res);
-}
-
 static void	prepare_benchmark(t_benchmark *bench, t_node *a, t_options *options)
 {
 	benchmark_init(bench);
@@ -104,12 +75,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	result = execute_sort(new_argc, new_argv, &options);
-	if (argc == 2)
-	{
-		while (--new_argc > 0)
-			free(new_argv[new_argc]);
-		free(new_argv);
-	}
+	free_new_argv(new_argv, new_argc);
 	if (!result)
 		return (1);
 	return (0);

@@ -1,0 +1,15 @@
+Disorder: 100.00%
+Strategy: simple
+Complexity: O(n^2)
+Total operations: 8
+sa: 1
+sb: 0
+ss: 0
+pa: 2
+pb: 2
+ra: 1
+rb: 0
+rr: 0
+rra: 2
+rrb: 0
+rrr: 0

@@ -18,6 +18,7 @@ SRC = main.c \
 	operations/swap.c \
 	parsing/check_args.c \
 	parsing/init_stack.c \
+	parsing/new_argv.c \
 	parsing/parse_args.c \
 	utils/ft_bzero.c \
 	utils/ft_calloc.c \

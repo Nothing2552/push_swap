@@ -102,6 +102,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 void	ft_free_split(char **d);
 
 int		parse_int(const char *str, int *result);
+char	**get_new_argv(int argc, char **argv, int *new_argc);
+void	free_new_argv(char **argv, int argc);
 t_node	*new_node(int value);
 void	add_node_back(t_node **stack, t_node *new);
 int		has_duplicate(t_node *stack, int value);
