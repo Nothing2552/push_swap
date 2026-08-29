@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   simple.c                                          :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: aryaprak <aryaprak@student.42istanbul.com.#+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/08/24 13:34:34 by aryaprak         #+#    #+#              */
-/*   Updated: 2026/08/26 20:11:13 by aryaprak        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   simple.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yaydilek <yaydilek@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/24 13:34:34 by aryaprak          #+#    #+#             */
+/*   Updated: 2026/08/29 13:58:41 by yaydilek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,6 @@ static void	sort_three(t_node **a, t_benchmark *bench)
 		sa(a, bench);
 }
 
-static void	sort_small(t_node **a, t_node **b, t_benchmark *bench)
-{
-	int	min_idx;
-	int	size;
-
-	size = get_stack_size(*a);
-	if (size == 2)
-	{
-		sa(a, bench);
-		return ;
-	}
-	while (get_stack_size(*a) > 3)
-	{
-		min_idx = find_min_index(a);
-		move_min_to_b(a, b, min_idx, bench);
-	}
-	sort_three(a, bench);
-	while (*b)
-		pa(a, b, bench);
-}
-
 void	sort_simple(t_node **a, t_node **b, t_benchmark *bench)
 {
 	int	size;
@@ -77,11 +56,6 @@ void	sort_simple(t_node **a, t_node **b, t_benchmark *bench)
 	if (!a || is_sorted(*a))
 		return ;
 	size = get_stack_size(*a);
-	if (size <= 5)
-	{
-		sort_small(a, b, bench);
-		return ;
-	}
 	while (get_stack_size(*a) > 3)
 	{
 		min_idx = find_min_index(a);

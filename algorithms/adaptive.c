@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	sort_adaptive(t_node **a, t_node **b, t_benchmark *bench)
+static void	look_disorder(t_node **a, t_node **b, t_benchmark *bench)
 {
 	if (bench->disorder < 0.2)
 	{
@@ -29,4 +29,18 @@ void	sort_adaptive(t_node **a, t_node **b, t_benchmark *bench)
 		bench->effective_strategy = STRATEGY_COMPLEX;
 		sort_complex(a, b, bench);
 	}
+}
+
+void	sort_adaptive(t_node **a, t_node **b, t_benchmark *bench)
+{
+	int	size;
+
+	size = get_stack_size(*a);
+	if (size <= 5)
+	{
+		bench->effective_strategy = STRATEGY_SIMPLE;
+		sort_simple(a, b, bench);
+		return ;
+	}
+	look_disorder(a, b, bench);
 }
